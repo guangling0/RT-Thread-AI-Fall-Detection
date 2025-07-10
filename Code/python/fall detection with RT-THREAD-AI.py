@@ -236,16 +236,17 @@ if __name__ == "__main__":
             print(fall_results)
             if(len(fall_results) != 0):
                 for fall_result in fall_results:
-                    if(fall_result[0]==0 && fall_result[1] >= 0.2):
+                    if(fall_result[0]==0 and fall_result[1] >= 0.2):
                         class_results = classifier.run(img)
                         print(class_results)
-                        if (class_results[0][0] == 0 && class_results[0][1] > 0.5):
+                        if (class_results[0][0] == 0 and class_results[0][1] > 0.5):
                             uart.write('AT+MQTTPUB=0,"$sys/5A6KBU6yw5/826601/dp/post/json","{\\"id\\":123\,\\"dp\\":{\\"fall\\":[{\\"v\\":1}]}}",0,0\r\n')
                             print('检测到摔倒')
-                            time.sleep(0.2）
+                            classifier.draw_result(pl, class_results)
                         else:
                             uart.write('AT+MQTTPUB=0,"$sys/5A6KBU6yw5/826601/dp/post/json","{\\"id\\":123\,\\"dp\\":{\\"fall\\":[{\\"v\\":0}]}}",0,0\r\n')
                             time.sleep(0.2)
+                            classifier.draw_result(pl, class_results)
                     else:
                         uart.write('AT+MQTTPUB=0,"$sys/5A6KBU6yw5/826601/dp/post/json","{\\"id\\":123\,\\"dp\\":{\\"fall\\":[{\\"v\\":0}]}}",0,0\r\n')
                         time.sleep(0.2)
@@ -278,3 +279,4 @@ if __name__ == "__main__":
         classifier.deinit()
         pl.destroy()
         print("资源清理完成，程序退出")
+
