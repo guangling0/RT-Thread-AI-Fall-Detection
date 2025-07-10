@@ -1,0 +1,13 @@
+<annotation>
+  <anno/>
+  <filename>14554047.jpg</filename>
+    <object>
+    <name>falling</name>
+    <bndbox>
+      <ymin>132</ymin>
+      <xmin>143</xmin>
+      <ymax>212</ymax>
+      <xmax>216</xmax>
+    </bndbox>
+  </object>
+</annotation>
